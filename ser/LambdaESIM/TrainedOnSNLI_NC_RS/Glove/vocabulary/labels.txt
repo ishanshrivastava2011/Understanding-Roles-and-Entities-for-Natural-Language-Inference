@@ -1,3 +1,0 @@
-contradiction
-entailment
-neutral
