@@ -21,6 +21,35 @@ conda create -n allennlp_editable python=3.7
 - Spacy
 - Stanford Core NLP (stanford-ner-2018-10-16)
 
-## Training Configs
+## Running the experiments
 
-These are the configuration files as required by the AllenNLP framework
+### Training Configs
+
+These are the configuration files as required by the AllenNLP framework. All the configurations used in the work are saved in */new_experiments_iter2/training_config/* folder. The naming convention used for these files in this work is based on the kind of experiment. For example, the tranining config for the ESIM Lambda model trained on SNLI, NC (NER Changed) and RS (Role-Switched) datasets is named as *esim_lambda_snli_nc_rs.jsonnet*.
+
+To perform any of the experiments mentioned in the paper, please download the datasets from the link provided and change the *train_data_path*, *validation_data_path* and *test_data_path* in the appropriate config file.
+
+### Batch Script 
+
+A sample batch script named *sample_batch_script.sh* shows how to run an experiment. This script contains AllenNLP's train, evaluate and predict commands. More details on these commands can be found in AllenNLP's [tutorial](https://github.com/allenai/allennlp/blob/master/tutorials/getting_started/walk_through_allennlp/training_and_evaluating.md)
+
+To run different experiments, you will need to change three things in this script:
+- *config_path* : This variable holds the path to the configuration files
+- *serialization_dir* : This variable holds the path to the serialization directory where you would like to save the model and all the results.
+- *test_data_path* : This variable holds the path to the directory that contains all the test data.
+
+### Output for the experiments
+
+Based on the sample script given, you should expect the following files as the output:
+- The train command results in model.tar.gz file as the serialized model.
+- The evaluate command results in *testEvaluate_snli.txt*, *testEvaluate_NC.txt* and *testEvaluate_RS.txt* files that contain the loss and accuracies on *SNLI test*, *NC test* and *RS test* sets.
+- The predict command results in *testPredict_NC.txt* and *testPredict_RS.txt* files that contain the predictions on *NC test* and *RS test* sets.
+
+## Sample Input
+> {"sentence1": "Van beek is the director of non-proliferation and space in the Trade and Industry Department.", "premise": "Van beek is the director of non-proliferation and space in the Trade and Industry Department.", "premiseUF": [[1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]], "hypothesisUF": [[1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]], "gold_label": "contradiction", "sentence2": "Van beek is the director of non-proliferation and space in the Trade and Industry Department.", "hypothesis": "Van beek is the director of non-proliferation and space in the Trade and Industry Department."}
+
+premiseUF and hypothesisUF are the list of Unary Feature vectors where each vector is a four dimensional vector. The four dimensions represent *Name of a Person/City/Country*, *Date Type Entity(Day of the week/Month/Year)*, *Numeric Entity (Cardinal/In Words)* and *Other* entity. 
+
+## Additional Scripts
+- A script to convert a jsonl file with premise hypothesis sentences into a jsonl file with the Unary Feature vectors for premise and hypothesis will be provided soon.
+ 
