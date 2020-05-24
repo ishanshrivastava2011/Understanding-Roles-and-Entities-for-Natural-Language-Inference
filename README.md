@@ -51,5 +51,13 @@ Based on the sample script given, you should expect the following files as the o
 premiseUF and hypothesisUF are the list of Unary Feature vectors where each vector is a four dimensional vector. The four dimensions represent *Name of a Person/City/Country*, *Date Type Entity(Day of the week/Month/Year)*, *Numeric Entity (Cardinal/In Words)* and *Other* entity. 
 
 ## Additional Scripts
-- A script to convert a jsonl file with premise hypothesis sentences into a jsonl file with the Unary Feature vectors for premise and hypothesis will be provided soon.
+'''
+python utils/Add_NERFeatures_To_SNLIFormatted_Jsonl.py --file_path_name ./data/sample/testSample.jsonl
+'''
+- This is script to convert a jsonl file with premise hypothesis sentences into a jsonl file with the Unary Feature vectors for premise and hypothesis. 
+- The testSample.jsonl file is a sample file in the snli format. 
+- Dependecies: Spacy and StanfordNER (download its zip file from https://drive.google.com/file/d/1q8hy3ZlxnURla0fFI8Ic9xc0Z05HxVbC/view?usp=sharing )
+- Unzip the StanfordNER zip file.
+- Update SAVE_DIR (where you would like to save the results) and STANFORDN_NER_DIR ( path to the unzipped folder)
+- There are two outputs (available for reference in /data/sample/) from this script 1) a joblib file with only the NER feature vectors, 2) a jsonl file with the NER Feature vectors in the format of "Sample Input" shown above,
  
