@@ -19,7 +19,7 @@ conda create -n allennlp_editable python=3.7
 
 ### (Optional) To create NER features for a new dataset
 - Spacy
-- Stanford Core NLP (stanford-ner-2018-10-16)
+- Stanford Core NLP (stanford-ner-2018-10-16: download its zip file from https://drive.google.com/file/d/1q8hy3ZlxnURla0fFI8Ic9xc0Z05HxVbC/view?usp=sharing )
 
 ## Running the experiments
 
@@ -51,9 +51,9 @@ Based on the sample script given, you should expect the following files as the o
 premiseUF and hypothesisUF are the list of Unary Feature vectors where each vector is a four dimensional vector. The four dimensions represent *Name of a Person/City/Country*, *Date Type Entity(Day of the week/Month/Year)*, *Numeric Entity (Cardinal/In Words)* and *Other* entity. 
 
 ## Additional Scripts
-'''
+```
 python utils/Add_NERFeatures_To_SNLIFormatted_Jsonl.py --file_path_name ./data/sample/testSample.jsonl
-'''
+```
 - This is script to convert a jsonl file with premise hypothesis sentences into a jsonl file with the Unary Feature vectors for premise and hypothesis. 
 - The testSample.jsonl file is a sample file in the snli format. 
 - Dependecies: Spacy and StanfordNER (download its zip file from https://drive.google.com/file/d/1q8hy3ZlxnURla0fFI8Ic9xc0Z05HxVbC/view?usp=sharing )
